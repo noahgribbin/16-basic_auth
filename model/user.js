@@ -57,6 +57,7 @@ userSchema.methods.generateFindHash = function() {
         if(tries > 3) return reject(err);
         tries++;
         _generateFindHash.call(this);
+
       });
     }
   });

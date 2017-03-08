@@ -6,8 +6,6 @@ const mongoose = require('mongoose');
 const Promise = require('bluebird');
 const User = require('../model/user.js');
 
-mongoose.Promise = Promise;
-
 require('../server.js');
 
 const url = `http://localhost:${process.env.PORT}`;
@@ -31,15 +29,14 @@ describe('Auth Routes', function() {
         .then( () => done())
         .catch(done);
       });
-
       it('should return a token', done => {
         request.post(`${url}/api/signup`)
         .send(exampleUser)
         .end((err, res) => {
           if (err) return done(err);
-          console.log('\ntoken:', res.text, '\n');
+          // console.log('OVER HEREEEEEEE:', res);
           expect(res.status).to.equal(200);
-          expect(res.text).to.be.a('string');
+          expect(res.text).to.be.a('string') ;
           done();
         });
       });
@@ -52,7 +49,7 @@ describe('Auth Routes', function() {
           password: '1234'
         })
         .end((err, res) => {
-          if(err) return done(err);
+          // if(err) return done(err);
           expect(res.status).to.equal(400);
           done();
         });
@@ -82,10 +79,9 @@ describe('Auth Routes', function() {
       it('should return a token', done => {
         request.get(`${url}/api/signin`)
         .auth('exampleuser', '1234')
+        //
         .end((err, res) => {
           if (err) return done(err);
-          console.log('\nuser:', this.tempUser);
-          console.log('\ntoken:', res.text);
           expect(res.status).to.equal(200);
           done();
         });
