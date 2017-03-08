@@ -27,7 +27,7 @@ const invalidUser = {
 };
 const exampleGallery = {
   name: 'test gallery',
-  desc: 'test gallery description',
+  desc: 'test gallery description'
 };
 
 describe('Gallery Routes', function() {
@@ -87,7 +87,7 @@ describe('Gallery Routes', function() {
       request.post(`${url}/api/gallery`)
       .send(exampleGallery)
       .set({
-        Authorization: `Bearer `
+        Authorization: 'Bearer '
       })
       .end((err, res) => {
         // if (err) return done(err);
@@ -227,7 +227,7 @@ describe('Gallery Routes', function() {
     it('should return 401, no token', done => {
       request.put(`${url}/api/gallery/${this.tempGallery._id}`)
       .set({
-        Authorization: `Bearer `
+        Authorization: 'Bearer '
       })
       .send(updatedUser)
       .end((err, res) => {
@@ -237,6 +237,7 @@ describe('Gallery Routes', function() {
       });
     });
     it('should return 400, invalid body', done => {
+      // test is passing from before each maybe?
       request.put(`${url}/api/gallery/${this.tempGallery._id}`)
       .set({
         Authorization: `Bearer ${this.tempToken}`

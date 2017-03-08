@@ -8,9 +8,10 @@ const mongoose = require('mongoose');
 const Promise = require('bluebird');
 const debug = require('debug')('cfgram:server');
 
-const authRouter = require('./route/auth-router.js')
-const galleryRouter = require('./route/gallery-router.js')
-const errors = require('./lib/error-middleware.js')
+const authRouter = require('./route/auth-router.js');
+const galleryRouter = require('./route/gallery-router.js');
+const picRouter = require('./route/pic-router.js');
+const errors = require('./lib/error-middleware.js');
 
 dotenv.load();
 
@@ -24,8 +25,11 @@ app.use(morgan('dev'));
 
 app.use(authRouter);
 app.use(galleryRouter);
+app.use(picRouter);
 app.use(errors);
 
-app.listen(PORT, () => {
+const server = module.exports = app.listen(PORT, () => {
   debug(`server up: ${PORT}`);
 });
+
+server.isRunning = true;
