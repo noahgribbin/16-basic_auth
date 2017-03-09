@@ -90,7 +90,6 @@ describe('Gallery Routes', function() {
         Authorization: 'Bearer '
       })
       .end((err, res) => {
-        // if (err) return done(err);
         expect(res.status).to.equal(401);
         done();
       });
@@ -102,7 +101,6 @@ describe('Gallery Routes', function() {
         Authorization: `Bearer ${this.tempToken}`
       })
       .end((err, res) => {
-        // if (err) return done(err);
         expect(res.status).to.equal(400);
         done();
       });
@@ -128,9 +126,7 @@ describe('Gallery Routes', function() {
       exampleGallery.userID = this.tempUser._id.toString();
       new Gallery(exampleGallery).save()
       .then( gallery => {
-        // console.log('real gallery:', gallery._id);
         this.tempGallery = gallery;
-        // console.log('tempGallery:', this.tempGallery._id);
         done();
       })
       .catch(done);
@@ -139,11 +135,6 @@ describe('Gallery Routes', function() {
     afterEach( () => {
       delete exampleGallery.userID;
     });
-    // after( done => {
-    //   User.remove({})
-    //   .then( () => done())
-    //   .catch(done);
-    // });
 
     it('should return a gallery', done => {
       request.get(`${url}/api/gallery/${this.tempGallery._id}`)
@@ -167,7 +158,6 @@ describe('Gallery Routes', function() {
         Authorization: 'Bearer '
       })
       .end((err, res) => {
-        // if (err) return done(err);
         expect(res.status).to.equal(401);
         done();
       });
@@ -178,7 +168,6 @@ describe('Gallery Routes', function() {
         Authorization: `Bearer ${this.tempToken}`
       })
       .end((err, res) => {
-        // if (err) return done(err);
         expect(res.status).to.equal(404);
         done();
       });
@@ -203,9 +192,7 @@ describe('Gallery Routes', function() {
       exampleGallery.userID = this.tempUser._id.toString();
       new Gallery(exampleGallery).save()
       .then( gallery => {
-        // console.log('real gallery:', gallery._id);
         this.tempGallery = gallery;
-        // console.log('tempGallery:', this.tempGallery._id);
         done();
       })
       .catch(done);
@@ -231,20 +218,17 @@ describe('Gallery Routes', function() {
       })
       .send(updatedUser)
       .end((err, res) => {
-        // if (err) return done(err);
         expect(res.status).to.equal(401);
         done();
       });
     });
     it('should return 400, invalid body', done => {
-      // test is passing from before each maybe?
       request.put(`${url}/api/gallery/${this.tempGallery._id}`)
       .set({
         Authorization: `Bearer ${this.tempToken}`
       })
       .send(invalidUser)
       .end((err, res) => {
-        if (err) return done(err);
         expect(res.status).to.equal(400);
         done();
       });
