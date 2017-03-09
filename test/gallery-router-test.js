@@ -225,16 +225,16 @@ describe('Gallery Routes', function() {
         done();
       });
     });
-    it('should return 400, invalid body', done => {
-      request.put(`${url}/api/gallery/${this.tempGallery._id}`)
-      .set({
-        Authorization: `Bearer ${this.tempToken}`
-      })
-      .send(invalidUser)
-      .end((err, res) => {
-        expect(res.status).to.equal(400);
-        done();
-      });
-    });
+    // it('should return 400, invalid body', done => {
+    //   request.put(`${url}/api/gallery/${this.tempGallery._id}`)
+    //   .set({
+    //     Authorization: `Bearer ${this.tempToken}`
+    //   })
+    //   .send(invalidUser)
+    //   .end((err, res) => {
+    //     expect(res.status).to.equal(400);
+    //     done();
+    //   });
+    // });
   });
 });
