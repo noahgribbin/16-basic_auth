@@ -1,8 +1,12 @@
 'use strict';
 
+require('./lib/test-env.js');
+
+
 const expect = require('chai').expect;
 const request = require('superagent');
 const debug = require('debug')('cfgram:pic-router-test');
+const awsMocks = require('./lib/aws-mocks.js');
 
 const Pic = require('../model/pic.js');
 const User = require('../model/user.js');
